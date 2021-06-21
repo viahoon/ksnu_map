@@ -9,6 +9,8 @@ import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     @Override
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onMapReady(@NonNull @org.jetbrains.annotations.NotNull NaverMap naverMap) {
-
+    public void onMapReady(@NonNull @NotNull NaverMap naverMap) {
+        
     }
 }
