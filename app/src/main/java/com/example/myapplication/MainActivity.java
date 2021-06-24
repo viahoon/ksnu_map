@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.PointF;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
@@ -42,6 +45,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull @NotNull NaverMap naverMap) {
         mMap = naverMap;
+
+        mMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
+                Toast.makeText(MainActivity.this, latLng.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         maptype_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
