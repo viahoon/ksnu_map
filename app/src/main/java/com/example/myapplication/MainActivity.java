@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
+        
+
+        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(35.9462369805542, 126.68215506925468));
+        naverMap.moveCamera(cameraUpdate);
     }
 
     private void initViews() {
