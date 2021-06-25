@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +25,10 @@ import org.jetbrains.annotations.NotNull;
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
     Spinner maptype_spinner;
     NaverMap mMap;
+    CheckBox checkBoxLayer;
+    Button btnNaverAddr;
+    NaverAddrApi naverAddrApi;
+
 
 
     @Override
@@ -72,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
-        
-
         CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(35.9462369805542, 126.68215506925468));
         naverMap.moveCamera(cameraUpdate);
+
+
     }
 
     private void initViews() {
@@ -83,6 +90,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.map_type, R.layout.custom_spinner_item);
         adapter.setDropDownViewResource(R.layout.custom_spinner_item_click);
         maptype_spinner.setAdapter(adapter);
+        checkBoxLayer = findViewById(R.id.checkBoxLayer);
+        btnNaverAddr = findViewById(R.id.btnNaverAddr);
+
+        btnNaverAddr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                naverAddrApi = new NaverAddrApi();
+                naverAddrApi.execute(new LatLng(35.9462369805542, 126.68215506925468));
+            }
+        });
     }
 
 }
